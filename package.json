@@ -1,0 +1,13 @@
+{
+  "name": "appointment-booking-api",
+  "version": "1.0.0",
+  "description": "SIA101 Prefinal Project - Appointment Booking API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
