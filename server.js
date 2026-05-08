@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 
+// Initialize app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
+// Sample appointment data
 let appointments = [
   {
     id: 1,
@@ -18,14 +21,17 @@ let appointments = [
   },
 ];
 
+// Home route
 app.get('/', (req, res) => {
   res.json({ message: 'Appointment Booking API is running' });
 });
 
+// Get all appointments
 app.get('/appointments', (req, res) => {
   res.json(appointments);
 });
 
+// Get appointment by ID
 app.get('/appointments/:id', (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -38,6 +44,7 @@ app.get('/appointments/:id', (req, res) => {
   res.json(appointment);
 });
 
+// Add new appointment
 app.post('/appointments', (req, res) => {
   const { customerName, service, date, time, status } = req.body;
 
@@ -61,6 +68,7 @@ app.post('/appointments', (req, res) => {
   res.status(201).json(newAppointment);
 });
 
+// Update appointment
 app.put('/appointments/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { customerName, service, date, time, status } = req.body;
@@ -83,6 +91,7 @@ app.put('/appointments/:id', (req, res) => {
   res.json(appointments[index]);
 });
 
+// Delete appointment
 app.delete('/appointments/:id', (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -101,6 +110,7 @@ app.delete('/appointments/:id', (req, res) => {
   });
 });
 
+// Start server
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
